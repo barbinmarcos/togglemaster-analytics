@@ -1,6 +1,3 @@
-## README — `togglemaster-analytics`
-
-```md
 # ToggleMaster Analytics Service
 
 Microsserviço responsável pela coleta e análise de métricas da plataforma.

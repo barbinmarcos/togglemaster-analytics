@@ -45,7 +45,7 @@ jobs:
       run: go test ./...
 
     # =========================
-    # Lint
+    # LINT
     # =========================
 
     - name: GolangCI-Lint
@@ -74,7 +74,7 @@ jobs:
         exit-code: 1
 
     # =========================
-    # Configure AWS
+    # AWS AUTH
     # =========================
 
     - name: Configure AWS Credentials
@@ -82,6 +82,7 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
         aws-region: ${{ secrets.AWS_REGION }}
 
     # =========================
@@ -93,7 +94,7 @@ jobs:
       uses: aws-actions/amazon-ecr-login@v2
 
     # =========================
-    # Build Docker
+    # Docker Build
     # =========================
 
     - name: Build Docker Image
@@ -102,7 +103,7 @@ jobs:
           -t $IMAGE_NAME:${{ github.sha }} .
 
     # =========================
-    # Image Scan
+    # Container Scan
     # =========================
 
     - name: Trivy Image Scan
